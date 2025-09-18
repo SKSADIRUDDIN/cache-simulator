@@ -11,6 +11,6 @@ A simple set-associative cache simulator in C++ with LRU/FIFO replacement and mi
 ## Build
 ```bash
 
-![CI](https://github.com/SKSADIRUDDIN/cache-simulator/actions/workflows/ci.yml/badge.svg)
-
 make
+
+![CI](https://github.com/SKSADIRUDDIN/cache-simulator/actions/workflows/ci.yml/badge.svg)
