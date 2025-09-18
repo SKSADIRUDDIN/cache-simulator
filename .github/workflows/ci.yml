@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies (gcc & make)
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y build-essential make
+
+      - name: Show environment
+        run: |
+          echo "GCC version:"
+          g++ --version
+          echo "Files in repo:"
+          ls -la
+
+      - name: Build (make)
+        run: |
+          make
+
+      - name: Run examples (non-blocking; logs only)
+        run: |
+          chmod +x run_examples.sh || true
+          echo "Running run_examples.sh (logs will show)."
+          ./run_examples.sh || echo "run_examples.sh exited with non-zero status"
+
+      - name: Run smoke test(s)
+        run: |
+          chmod +x tests/test_stream.sh
+          pushd tests
+          ./test_stream.sh
+          popd
+
+      - name: Upload build artifact (cache_sim binary)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cache_sim-binary
+          path: cache_sim
