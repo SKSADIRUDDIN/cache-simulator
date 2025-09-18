@@ -1,0 +1,8 @@
+# Ignore compiled binaries
+cache_sim
+*.o
+*.exe
+*.log
+
+# Mac-specific
+.DS_Store
