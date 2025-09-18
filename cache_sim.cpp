@@ -6,7 +6,21 @@
 // Example:
 //   ./cache_sim traces/conflict.txt 32768 64 4 LRU 32 -v
 
-#include <bits/stdc++.h>
+
+#include <iostream>
+#include <vector>
+#include <list>
+#include <unordered_map>
+#include <unordered_set>
+#include <string>
+#include <fstream>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <algorithm>
+#include <iomanip>
+#include <sstream>
+
 using namespace std;
 using u64 = unsigned long long;
 
